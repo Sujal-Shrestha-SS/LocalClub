@@ -1,0 +1,142 @@
+/* Lineup graphic + admin builder. Loaded only on lineup pages. */
+
+.lu-wrap { width: 100%; max-width: 560px; margin: 0 auto; }
+
+/* ---------- The graphic ---------- */
+.lu-card {
+  --lu-accent: #2ee6a0;
+  border-radius: 18px; padding: 22px 18px 18px; color: #fff;
+  background:
+    radial-gradient(120% 60% at 20% 0%, #14684c 0%, rgba(20,104,76,0) 60%),
+    linear-gradient(180deg, #0e4d38 0%, #0a2f23 100%);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(11,42,32,.25);
+}
+.lu-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 14px; padding: 0 4px; }
+.lu-title {
+  font-family: var(--font-display); font-weight: 800; font-style: italic;
+  font-size: clamp(2rem, 9vw, 3.2rem); line-height: .95; letter-spacing: .01em;
+  text-transform: uppercase; overflow-wrap: anywhere;
+}
+.lu-meta { display: grid; justify-items: end; gap: 6px; flex: none; }
+.lu-formation {
+  font: 700 1.05rem/1 var(--font-display); letter-spacing: .06em; color: var(--lu-accent);
+}
+.lu-brand {
+  font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: rgba(46,230,160,.14); color: #bff5de; padding: 4px 10px; border-radius: 999px;
+  max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.lu-pitch {
+  position: relative; container-type: inline-size; aspect-ratio: 4 / 5; width: 100%;
+  border-radius: 14px; overflow: hidden;
+  background: repeating-linear-gradient(180deg, #1c2a24 0 12.5%, #18241f 12.5% 25%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.lu-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lu-layer { position: absolute; inset: 0; }
+
+.lu-slot {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 21cqw; display: flex; flex-direction: column; align-items: center;
+  outline: none;
+}
+.lu-circle {
+  position: relative; width: 15.5cqw; height: 15.5cqw; border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, #2d7a5c, #174733);
+  border: max(2px, .5cqw) solid var(--lu-accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+.lu-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 50%; }
+.lu-no {
+  position: absolute; right: -1cqw; top: -.5cqw; min-width: 4.6cqw; height: 4.6cqw; padding: 0 .8cqw;
+  display: grid; place-items: center; border-radius: 999px;
+  background: var(--card-yellow); color: var(--card-yellow-ink);
+  font: 800 max(8px, 2.4cqw)/1 var(--font-body);
+}
+.lu-pill {
+  margin-top: -2.2cqw; position: relative; z-index: 1; max-width: 100%;
+  display: flex; align-items: center; gap: .9cqw;
+  background: #101a16; border: 1px solid rgba(46,230,160,.7); border-radius: 999px;
+  padding: .7cqw 1.8cqw; box-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+.lu-flag { width: 3.6cqw; height: 3.6cqw; border-radius: 50%; object-fit: cover; flex: none; }
+.lu-txt { display: grid; min-width: 0; text-align: center; line-height: 1.15; }
+.lu-name { font: 700 max(9px, 2.5cqw)/1.15 var(--font-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lu-country { font: 600 max(6px, 1.6cqw)/1.2 var(--font-body); color: #9fc3b2; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Captain armband ---------- */
+.lu-cap {
+  position: absolute; left: -1cqw; top: -.5cqw; z-index: 2; min-width: 4.6cqw; height: 4.6cqw; padding: 0 .8cqw;
+  display: grid; place-items: center; border-radius: 50%; border: 0;
+  background: #fff; color: #0a2f23; font: 800 max(8px, 2.4cqw)/1 var(--font-body);
+  box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+button.lu-cap { cursor: pointer; min-width: max(18px, 4.6cqw); height: max(18px, 4.6cqw); background: rgba(16,26,22,.85); color: #fff; border: 1px dashed rgba(255,255,255,.6); box-shadow: none; opacity: 0; }
+button.lu-cap.is-on { background: #fff; color: #0a2f23; border: 0; box-shadow: 0 1px 3px rgba(0,0,0,.4); opacity: 1; }
+.lu-slot:hover button.lu-cap, .lu-slot:focus-within button.lu-cap, .lu-slot.is-active button.lu-cap { opacity: 1; }
+@media (hover: none) { button.lu-cap { opacity: .9; } }
+.lu-captain-line { display: flex; align-items: center; gap: 8px; font-size: .92rem; }
+.lu-cap-chip { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #0a2f23; color: #fff; font-size: .72rem; font-weight: 800; }
+
+/* ---------- Substitutes bench ---------- */
+.lu-benchwrap {
+  margin-top: 14px; border-radius: 14px; padding: 12px 10px 14px;
+  background: rgba(8,22,17,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.lu-benchhead { display: flex; align-items: center; gap: 8px; margin: 0 4px 10px; }
+.lu-benchtitle {
+  font: 800 1.15rem/1 var(--font-display); font-style: italic; letter-spacing: .06em; text-transform: uppercase;
+}
+.lu-benchcount {
+  min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; display: grid; place-items: center;
+  background: rgba(46,230,160,.18); color: var(--lu-accent); font-size: .78rem; font-weight: 700;
+}
+.lu-benchcount:empty { display: none; }
+.lu-bench {
+  container-type: inline-size; width: 100%;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 5cqw 0; justify-items: center;
+}
+.lu-bench .lu-slot { position: relative; left: auto; top: auto; transform: none; width: 100%; }
+.lu-bench .lu-circle { width: 13.5cqw; height: 13.5cqw; }
+.lu-bench .lu-pill { max-width: 94%; }
+
+/* ---------- Admin editing states ---------- */
+.lu-slot[role="button"] { cursor: pointer; }
+.lu-slot.is-empty .lu-circle { background: rgba(255,255,255,.04); border-style: dashed; border-color: rgba(255,255,255,.35); display: grid; place-items: center; }
+.lu-plus { font: 400 5cqw/1 var(--font-body); color: rgba(255,255,255,.6); }
+.lu-pill-role { color: rgba(255,255,255,.7); font: 700 max(9px, 2.3cqw)/1 var(--font-body); letter-spacing: .06em; border-color: rgba(255,255,255,.25); }
+.lu-slot.is-active .lu-circle { border-color: var(--card-yellow); box-shadow: 0 0 0 .8cqw rgba(255,198,43,.3); }
+.lu-slot.is-over .lu-circle { transform: scale(1.08); border-color: var(--card-yellow); }
+.lu-slot:focus-visible .lu-circle { outline: 3px solid var(--card-yellow); outline-offset: 2px; }
+.lu-remove {
+  position: absolute; top: 6.5cqw; right: 0; z-index: 2; width: 5cqw; height: 5cqw; min-width: 18px; min-height: 18px;
+  border-radius: 50%; border: 0; background: var(--card-red); color: #fff; font: 700 max(11px, 3.2cqw)/1 var(--font-body);
+  display: none; place-items: center; padding: 0;
+}
+.lu-slot:hover .lu-remove, .lu-slot:focus-within .lu-remove, .lu-slot.is-active .lu-remove { display: grid; }
+@media (hover: none) { .lu-remove { display: grid; } }
+
+.lu-admin { display: grid; grid-template-columns: minmax(0, 560px) minmax(300px, 1fr); gap: 24px; align-items: start; }
+.lu-admin .lu-wrap { margin: 0; }
+.lu-side { display: grid; gap: 14px; position: sticky; top: 76px; }
+.lu-hint { font-size: .9rem; color: var(--muted); background: var(--turf-tint); border-radius: var(--r-sm); padding: 8px 12px; }
+.lu-list { display: grid; gap: 6px; max-height: 420px; overflow-y: auto; padding-right: 2px; }
+.lu-item {
+  display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); padding: 6px 10px; cursor: grab;
+}
+.lu-item:hover { border-color: var(--turf-2); background: var(--turf-tint); }
+.lu-item.is-used { opacity: .65; }
+.lu-item .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex: none; }
+.lu-item-txt { display: grid; min-width: 0; flex: 1; line-height: 1.25; }
+.lu-item-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lu-item-sub { font-size: .8rem; color: var(--muted); }
+
+@media (max-width: 960px) {
+  .lu-admin { grid-template-columns: 1fr; }
+  .lu-admin .lu-wrap { margin: 0 auto; }
+  .lu-side { position: static; }
+  .lu-list { max-height: 320px; }
+}
